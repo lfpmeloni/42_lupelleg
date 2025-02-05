@@ -26,80 +26,59 @@ int	ft_atoi_base(char *str, char *base)
 
 	sign = 1;
 	result = 0;
-	if (base_length(base) >= 2 && !check_duplicate(base))
+	while ((*str >= 9 && *str <= 13) || *str == ' '
+		|| *str == '-' || *str == '+')
 	{
-		while ((*str >= 9 && *str <= 13) || *str == ' '
-			|| *str == '-' || *str == '+')
-		{
-			if (*str == '-')
-				sign = sign * -1;
-			str++;
-		}
-		while (*str != '\0')
-		{
-			index = get_index(*str, base);
-			result = result * base_length(base) + index;
-			str++;
-		}
+		if (*str == '-')
+			sign = sign * -1;
+		str++;
+	}
+	while (*str != '\0')
+	{
+		index = get_index(*str, base);
+		result = result * base_length(base) + index;
+		str++;
 	}
 	return (result * sign);
 }
 
 char	*ft_itoa_base(int nbr, char *base, char *result)
 {
-	int		i;
+	int		len;
 	int		size;
 	long	long_nbr;
 
 	long_nbr = nbr;
 	size = base_length(base);
-	if (size >= 2 && !check_duplicate(base))
+	len = 0;
+	if (long_nbr < 0)
 	{
-		if (long_nbr / size >= 1)
-		{
-			ft_itoa_base(long_nbr / size, base, result);
-			i = 0;
-			while (result[i] != '\0')
-				i++;
-			result[i] = base[long_nbr % size];
-		}
-		else
-		{
-			i = 0;
-			while (result[i] != 0)
-				i++;
-			result[i] = base[long_nbr % size];
-		}
+		result[len++] = '-';
+		long_nbr = -long_nbr;
 	}
+	if (long_nbr / size > 0)
+		len += ft_itoa_base(long_nbr / size, base, result + len) - result;
+	result[len] = base[long_nbr % size];
+	result[len + 1] = '\0';
 	return (result);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int		i;
 	int		int_nbr;
-	int		size;
+	int		max_size;
 	char	*result;
 
-	if (base_length(base_from) >= 2 && base_length(base_to) >= 2
-		&& !check_duplicate(base_from) && !check_duplicate(base_to))
-	{
-		size = base_length(nbr);
-		result = ft_malloc(size + 1);
-		i = 0;
-		while (i < (size + 1))
-			result[i++] = '\0';
-		int_nbr = ft_atoi_base(nbr, base_from);
-		if (int_nbr < 0)
-		{
-			int_nbr = -int_nbr;
-			result[0] = '-';
-		}
-		result = ft_itoa_base(int_nbr, base_to, result);
-		return (result);
-	}
-	else
+	if (base_length(base_from) < 2 || base_length(base_to) < 2
+		|| check_duplicate(base_from) || !check_duplicate(base_to))
 		return (NULL);
+	int_nbr = ft_atoi_base(nbr, base_from);
+	max_size = 33;
+	result = (char *)ft_malloc(max_size);
+	if (!result)
+		return (NULL);
+	result[0] = '\0';
+	return (ft_itoa_base(int_nbr, base_to, result));
 }
 
 // int	main(void)

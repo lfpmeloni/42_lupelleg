@@ -18,7 +18,7 @@ void	*ft_malloc(int size)
 	char	*ptr;
 	int		i;
 
-	ptr = malloc(sizeof(char) * size + 1);
+	ptr = malloc(sizeof(char) * (size + 1));
 	if (!ptr)
 		return (NULL);
 	i = 0;
@@ -88,16 +88,17 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		total_len += ft_strlen(strs[i++]);
 	total_len += ft_strlen(sep) * (size -1);
 	result = ft_malloc(total_len);
+	if (!result)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
-		ft_strcat(result, strs[i])
+		ft_strcat(result, strs[i]);
+		if (i < size - 1)
+			ft_strcat(result, sep);
+		i++
 	}
-	
-	result = allocate_str(size, strs, sep);
-	if (result == NULL)
-		return (NULL);
-	return (ft_strcat(size, strs, sep, result));
+	return (result);
 }
 
 // int main(void)
