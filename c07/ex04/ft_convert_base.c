@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:02:26 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/02/04 15:43:56 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:16:27 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,39 +44,51 @@ int	ft_atoi_base(char *str, char *base)
 
 char	*ft_itoa_base(int nbr, char *base, char *result)
 {
-	int		len;
+	int		i;
 	int		size;
-	long	long_nbr;
 
-	long_nbr = nbr;
 	size = base_length(base);
-	len = 0;
-	if (long_nbr < 0)
+	i = 0;
+	if (nbr < 0)
 	{
-		result[len++] = '-';
-		long_nbr = -long_nbr;
+		result[i++] = '-';
+		nbr *= -1;
 	}
-	if (long_nbr / size > 0)
-		len += ft_itoa_base(long_nbr / size, base, result + len) - result;
-	result[len] = base[long_nbr % size];
-	result[len + 1] = '\0';
+	if ((nbr / size) > 0)
+	{
+		ft_itoa_base((nbr / size), base, result);
+		while (result[i] != '\0')
+			i++;
+		result[i] = base[nbr % size];
+	}
+	else
+	{
+		i = 0;
+		while (result[i] != 0)
+			i++;
+		result[i] = base[nbr % size];
+	}
 	return (result);
 }
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
+	int		i;
 	int		int_nbr;
 	int		max_size;
 	char	*result;
 
 	if (base_length(base_from) < 2 || base_length(base_to) < 2
-		|| check_duplicate(base_from) || !check_duplicate(base_to))
+		|| check_duplicate(base_from) || check_duplicate(base_to))
 		return (NULL);
 	int_nbr = ft_atoi_base(nbr, base_from);
-	max_size = 33;
+	max_size = 35;
 	result = (char *)ft_malloc(max_size);
 	if (!result)
 		return (NULL);
+	i = 0;
+	while (i < 35)
+		result[i++] = '\0';
 	result[0] = '\0';
 	return (ft_itoa_base(int_nbr, base_to, result));
 }

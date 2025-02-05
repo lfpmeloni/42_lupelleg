@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:16:21 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/02/04 16:39:51 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:16:43 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_size(int size, char **strs)
 		count++;
 	if (count < size)
 		return (count);
-	return(size);
+	return (size);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
@@ -79,9 +79,6 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	if (size == 0)
 		return ((char *)ft_malloc(1));
 	size = check_size (size, strs);
-
-	printf("Size: %d\n", size);
-
 	i = 0;
 	total_len = 0;
 	while (i < size)
@@ -96,7 +93,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		ft_strcat(result, strs[i]);
 		if (i < size - 1)
 			ft_strcat(result, sep);
-		i++
+		i++;
 	}
 	return (result);
 }
