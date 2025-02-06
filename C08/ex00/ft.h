@@ -6,12 +6,13 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:21:55 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/02/05 16:50:58 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:43:58 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_H
-#define FT_H
+
+# define FT_H
 
 void	ft_putchar(char c);
 void	ft_swap(int *a, int *b);
