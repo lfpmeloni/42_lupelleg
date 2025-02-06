@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define t_point int
-#define point
+#ifndef FT_POINT_H
+#define FT_POINT_H
 
-void    set_point(void)
+typedef struct s_point
 {
-    
-}
+    int x;
+    int y;
+}   t_point;
+
+#endif
