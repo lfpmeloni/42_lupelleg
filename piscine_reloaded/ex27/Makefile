@@ -5,34 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/07 13:05:53 by lupelleg          #+#    #+#              #
-#    Updated: 2025/03/08 19:07:29 by lupelleg         ###   ########.fr        #
+#    Created: 2025/03/09 13:05:41 by lupelleg          #+#    #+#              #
+#    Updated: 2025/03/09 13:33:54 by lupelleg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = ft_display_file
 
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/ft_putchar.c srcs/ft_putstr.c srcs/ft_strcmp.c srcs/ft_strlen.c srcs/ft_swap.c
+SRC = ft_display_file.c
 
-OBJS = ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
-
-INCLUDES = ./includes
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(FALGS) -c $(SRCS) -I $(INCLUDES)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJ)
 
-fclean: clean
+fclean:
 	rm -rf $(NAME)
 
 re: fclean all

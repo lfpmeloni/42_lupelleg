@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:20:29 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/07 11:38:03 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:56:44 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putstr(char *str)
 {
 	while (*str)
 	{
-		ft_putstr(str);
+		ft_putchar(*str);
 		str++;
 	}
 }
