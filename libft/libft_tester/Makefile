@@ -5,30 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/10 12:37:07 by lupelleg          #+#    #+#              #
-#    Updated: 2025/03/10 13:02:30 by lupelleg         ###   ########.fr        #
+#    Created: 2025/03/10 13:00:22 by lupelleg          #+#    #+#              #
+#    Updated: 2025/03/10 13:02:13 by lupelleg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
-SRCS = ft_isalpha.c
-
-OBJS = $(SRCS:.c=.o)
+NAME = tester
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -f
+SRCS = libft_tester.c
+
+LIBFT = ../libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(SRCS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 
 clean:
-	rm -f $(OBJS) $(NAME)
+	rm -f $(NAME)
 
 fclean: clean
 

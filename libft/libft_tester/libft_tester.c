@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:53:40 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/10 12:04:35 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:58:14 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	run_all_tests(t_function_test *tests, size_t nb_functions)
 		}
 		if (function_ok)
 			printf("%s: OK\n", tests[i].func_name);
+		i++;
 	}
 	return (0);
 }
