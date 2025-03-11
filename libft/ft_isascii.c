@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 14:20:35 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/11 12:44:52 by lupelleg         ###   ########.fr       */
+/*   Created: 2025/03/11 11:42:21 by lupelleg          #+#    #+#             */
+/*   Updated: 2025/03/11 11:49:08 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+/*
+*  The isascii() function tests for an ASCII character, which is any character
+*  between 0 and octal 0177 inclusive.
+*/
 
-# define LIBFT_H
+#include "libft.h"
 
-# include <unistd.h>
-
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-int		ft_strlen(char *s);
-void	*ft_memset(void *b, int c, size_t len);
-
-#endif
+int	ft_isascii(int c)
+{
+	if (c >= 0 && c <= 0177)
+		return (1);
+	return (0);
+}

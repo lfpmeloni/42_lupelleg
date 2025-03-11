@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 14:20:35 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/11 12:44:52 by lupelleg         ###   ########.fr       */
+/*   Created: 2025/03/11 12:01:25 by lupelleg          #+#    #+#             */
+/*   Updated: 2025/03/11 12:09:11 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+/*
+ *  The strlen() function computes the length of the string s.
+ *  The function returns the numver of characters that precede the terminating
+ *  NUL character.
+ */
 
-# define LIBFT_H
+#include <unistd.h>
 
-# include <unistd.h>
+int	ft_strlen(char *s)
+{
+	int	count;
 
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-int		ft_strlen(char *s);
-void	*ft_memset(void *b, int c, size_t len);
-
-#endif
+	count = 0;
+	while (*s)
+	{
+		count++;
+		s++;
+	}
+	return (count);
+}
