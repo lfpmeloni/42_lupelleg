@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:18:33 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/11 12:37:21 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:02:18 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 */
 
 #include <stddef.h>
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

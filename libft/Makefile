@@ -6,13 +6,13 @@
 #    By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:37:07 by lupelleg          #+#    #+#              #
-#    Updated: 2025/03/10 13:02:30 by lupelleg         ###   ########.fr        #
+#    Updated: 2025/03/13 08:14:36 by lupelleg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRCS = ft_isalpha.c
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c
 
 OBJS = $(SRCS:.c=.o)
 

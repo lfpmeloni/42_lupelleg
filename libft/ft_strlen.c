@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:01:25 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/11 12:09:11 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:26:11 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
  *  NUL character.
  */
 
-#include <unistd.h>
+#include "libft.h"
 
-int	ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while (*s)
