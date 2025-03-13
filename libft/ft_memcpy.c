@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 12:18:33 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/13 11:16:42 by lupelleg         ###   ########.fr       */
+/*   Created: 2025/03/13 11:26:14 by lupelleg          #+#    #+#             */
+/*   Updated: 2025/03/13 11:40:34 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-*  The memset() function writes len bytes of value c (converted to an unsigned
-*  char) to the string b.
-*  The function returns its first argument.
+*  The memcpy() function copies n bytes from memory area src to memory area
+*  dest. The memory areas must not overlap.
+*  The function returns a pointer to dest.
 */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*ptr;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	ptr = (unsigned char *)b;
-	while (len-- > 0)
-		*ptr++ = (unsigned char)c;
-	return (b);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	while (n--)
+	{
+		*d++ = *s++;
+	}
+	return (dest);
 }
