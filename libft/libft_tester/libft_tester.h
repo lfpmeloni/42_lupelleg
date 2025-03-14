@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:04:35 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/10 11:31:46 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:44:15 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_function_test
 	size_t		result_size;
 	void		(*print_input)(void *input);
 }	t_function_test;
+
+typedef struct	s_mem_func_input
+{
+	const char	*dest_initial;
+	const char *src;
+	size_t		n;
+}	t_mem_func_input;
 
 void	print_int(void *input);
 void	print_str(void *input);
