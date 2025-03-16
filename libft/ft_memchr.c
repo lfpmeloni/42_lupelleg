@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 12:01:25 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/16 12:53:37 by lupelleg         ###   ########.fr       */
+/*   Created: 2025/03/15 12:17:17 by lupelleg          #+#    #+#             */
+/*   Updated: 2025/03/15 12:32:54 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
- *  The strlen() function computes the length of the string s.
- *  The function returns the numver of characters that precede the terminating
- *  NUL character.
- */
+*  The memchr() function locates the first occurence of c (converted to an
+*  unsigned char) in string s.
+*  The function returns a pointer to the byte located, or NULL if no such byte
+*  exists within n bytes.
+*/
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	count;
+	const unsigned char	*ptr;
 
-	count = 0;
-	while (*s)
+	ptr = (const unsigned char *)s;
+	while (n > 0)
 	{
-		count++;
-		s++;
+		if (*ptr == (unsigned char)c)
+			return ((void *)ptr);
+		ptr++;
+		n--;
 	}
-	return (count);
+	return (NULL);
 }
