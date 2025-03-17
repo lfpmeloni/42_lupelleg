@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 12:32:17 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/16 13:04:25 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:58:03 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strdup(const char *s1)
 	dup = (char *)malloc((str_len + 1) * sizeof(char));
 	if (!dup)
 		return (NULL);
-	ft_strlcpy(dup, s1, str_len);
+	ft_strlcpy(dup, s1, str_len + 1);
 	return (dup);
 }

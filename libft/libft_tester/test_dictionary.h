@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:32:06 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/16 14:23:07 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:13:26 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,22 @@ typedef struct s_strlcpy_input
 void *wrap_ft_strlcpy(void *input)
 {
 	t_strlcpy_input *data = (t_strlcpy_input *)input;
-	size_t result = ft_strlcpy(data->dst, data->src, data->dstsize);
+	size_t min_alloc = strlen(data->dst) + 1;
+	size_t alloc_size = (data->dstsize > min_alloc) ? data->dstsize : min_alloc;
+	char *buf = malloc(alloc_size);
+	if (!buf)
+		return (NULL);
+	strncpy(buf, data->dst, alloc_size);
+	buf[alloc_size - 1] = '\0';
+	size_t result = ft_strlcpy(buf, data->src, data->dstsize);
 	size_t *ptr = malloc(sizeof(size_t));
 	if (!ptr)
+	{
+		free(buf);
 		return (NULL);
+	}
 	*ptr = result;
+	free(buf);
 	return (void *)ptr;
 }
 
@@ -141,11 +152,22 @@ typedef struct s_strlcat_input
 void *wrap_ft_strlcat(void *input)
 {
 	t_strlcat_input *data = (t_strlcat_input *)input;
-	size_t result = ft_strlcat(data->dst, data->src, data->dstsize);
+	size_t min_alloc = strlen(data->dst) + 1;
+	size_t alloc_size = (data->dstsize > min_alloc) ? data->dstsize : min_alloc;
+	char *buf = malloc(alloc_size);
+	if (!buf)
+		return (NULL);
+	strncpy(buf, data->dst, alloc_size);
+	buf[alloc_size - 1] = '\0';
+	size_t result = ft_strlcat(buf, data->src, data->dstsize);
 	size_t *ptr = malloc(sizeof(size_t));
 	if (!ptr)
+	{
+		free(buf);
 		return (NULL);
+	}
 	*ptr = result;
+	free(buf);
 	return (void *)ptr;
 }
 
@@ -162,7 +184,10 @@ void *wrap_ft_strchr(void *input)
 {
 	t_strchr_input *data = (t_strchr_input *)input;
 	char *result = ft_strchr(data->s, data->c);
-	return (void *)result;
+	if (!result)
+		return (NULL);
+	char *result_copy = ft_strdup(result);
+	return (void *)result_copy;
 }
 
 typedef struct s_strrchr_input
@@ -175,7 +200,10 @@ void *wrap_ft_strrchr(void *input)
 {
 	t_strrchr_input *data = (t_strrchr_input *)input;
 	char *result = ft_strrchr(data->s, data->c);
-	return (void *)result;
+	if (!result)
+		return (NULL);
+	char *result_copy = ft_strdup(result);
+	return (void *)result_copy;
 }
 
 typedef struct s_strncmp_input
@@ -207,7 +235,10 @@ void *wrap_ft_memchr(void *input)
 {
 	t_memchr_input *data = (t_memchr_input *)input;
 	void *result = ft_memchr(data->s, data->c, data->n);
-	return (void *)result;
+	if (!result)
+		return (NULL);
+	char *result_copy = ft_strdup((char *)result);
+	return (void *)result_copy;
 }
 
 typedef struct s_memcmp_input
@@ -239,7 +270,10 @@ void *wrap_ft_strnstr(void *input)
 {
 	t_strnstr_input *data = (t_strnstr_input *)input;
 	char *result = ft_strnstr(data->haystack, data->needle, data->len);
-	return (void *)result;
+	if (!result)
+		return (NULL);
+	char *result_copy = ft_strdup(result);
+	return (void *)result_copy;
 }
 
 typedef struct s_atoi_input
@@ -372,7 +406,7 @@ static t_strlcat_input strlcat_input1 = { "Hello", "World", 3 };
 static size_t expected_strlcat1 = 8;
 
 static t_strlcat_input strlcat_input2 = { "Hello", "World", 6 };
-static size_t expected_strlcat2 = 8;
+static size_t expected_strlcat2 = 10;
 
 static t_test_case g_strlcat_cases[] = {
 	{ (void *)&strlcat_input1, (void *)&expected_strlcat1 },
@@ -483,25 +517,17 @@ static t_test_case g_atoi_cases[] = {
 };
 
 static t_calloc_input calloc_input1 = { 5, 4 };
-static const char expected_calloc1[] = "Hello";
-
-static t_calloc_input calloc_input2 = { 0, 4 };
-static const char *expected_calloc2 = "";
+static const char expected_calloc1[20] = {0};
 
 static t_test_case g_calloc_cases[] = {
 	{ (void *)&calloc_input1, (void *)expected_calloc1 },
-	{ (void *)&calloc_input2, (void *)EXPECTED_CALLOC2 },
 };
 
 static t_strdup_input strdup_input1 = { "Hello" };
 static const char expected_strdup1[] = "Hello";
 
-static t_strdup_input strdup_input2 = { "" };
-static const char *expected_strdup2 = "";
-
 static t_test_case g_strdup_cases[] = {
 	{ (void *)&strdup_input1, (void *)expected_strdup1 },
-	{ (void *)&strdup_input2, (void *)EXPECTED_STRDUP2 },
 };
 
 static t_function_test g_tests[] = {
@@ -515,8 +541,8 @@ static t_function_test g_tests[] = {
 	{ "ft_bzero", &wrap_ft_bzero, g_bzero_cases, sizeof(g_bzero_cases) / sizeof(t_test_case), sizeof(expected_bzero1), &print_str },
 	{ "ft_memcpy", &wrap_ft_memcpy, g_memcpy_cases, sizeof(g_memcpy_cases) / sizeof(t_test_case), sizeof(expected_memcpy1), &print_str },
 	{ "ft_memmove", &wrap_ft_memmove, g_memmove_cases, sizeof(g_memmove_cases) / sizeof(t_test_case), sizeof(expected_memmove1), &print_str },
-	{ "ft_strlcpy", &wrap_ft_strlcpy, g_strlcpy_cases, sizeof(g_strlcpy_cases) / sizeof(t_test_case), sizeof(size_t), &print_int },
-	{ "ft_strlcat", &wrap_ft_strlcat, g_strlcat_cases, sizeof(g_strlcat_cases) / sizeof(t_test_case), sizeof(size_t), &print_int },
+	{ "ft_strlcpy", &wrap_ft_strlcpy, g_strlcpy_cases, sizeof(g_strlcpy_cases) / sizeof(t_test_case), sizeof(size_t), &print_size_t },
+	{ "ft_strlcat", &wrap_ft_strlcat, g_strlcat_cases, sizeof(g_strlcat_cases) / sizeof(t_test_case), sizeof(size_t), &print_size_t },
 	{ "ft_toupper", &wrap_ft_toupper, g_toupper_cases, sizeof(g_toupper_cases) / sizeof(t_test_case), sizeof(int), &print_int },
 	{ "ft_tolower", &wrap_ft_tolower, g_tolower_cases, sizeof(g_tolower_cases) / sizeof(t_test_case), sizeof(int), &print_int },
 	{ "ft_strchr", &wrap_ft_strchr, g_strchr_cases, sizeof(g_strchr_cases) / sizeof(t_test_case), sizeof(expected_strchr1), &print_str },

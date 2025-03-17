@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:53:40 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/10 12:58:14 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:40:22 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	print_str(void *input)
 	printf("%s", str);
 }
 
+void	print_size_t(void *input)
+{
+	size_t	*p;
+
+	p = (size_t *)input;
+	printf("%zu", *p);
+}
+
 static int	run_all_tests(t_function_test *tests, size_t nb_functions)
 {
 	size_t	i;
@@ -45,7 +53,10 @@ static int	run_all_tests(t_function_test *tests, size_t nb_functions)
 		while (j < tests[i].nb_cases)
 		{
 			result = tests[i].func_wrapper(tests[i].cases[j].input);
-			if (!result || memcmp(result, tests[i].cases[j].expected,
+			if (tests[i].cases[j].expected == NULL && result == NULL)
+				;
+			else if (tests[i].cases[j].expected == NULL || result == NULL
+				|| memcmp(result, tests[i].cases[j].expected,
 					tests[i].result_size) != 0)
 			{
 				printf("%s: KO - input: ", tests[i].func_name);
