@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 12:05:02 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/14 12:26:02 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:24:37 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
+	if ((char)c == '\0')
 		return ((char *)s);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 12:32:17 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/17 16:58:03 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:13:07 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*ft_strdup(const char *s1)
 	size_t	str_len;
 	char	*dup;
 
-	if (!s1)
-		return (NULL);
 	str_len = ft_strlen(s1);
 	dup = (char *)malloc((str_len + 1) * sizeof(char));
 	if (!dup)

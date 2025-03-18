@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:18:06 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/13 12:45:15 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:11:57 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	char		*d;
 	const char	*s;
 
+	if (!dest && !src)
+		return (NULL);
 	d = (char *)dest;
 	s = (const char *)src;
 	if (d < s)

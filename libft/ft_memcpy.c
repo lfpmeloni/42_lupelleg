@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:26:14 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/13 11:40:34 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:11:33 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char		*d;
 	const unsigned char	*s;
 
+	if (!dest && !src)
+		return (NULL);
 	d = (unsigned char *)dest;
 	s = (const unsigned char *)src;
 	while (n--)

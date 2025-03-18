@@ -6,7 +6,7 @@
 /*   By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:16:12 by lupelleg          #+#    #+#             */
-/*   Updated: 2025/03/17 17:37:47 by lupelleg         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:16:56 by lupelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;
 	size_t	i;
+	size_t	len_check;
 
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
+	len_check = ft_strlen(s) - start;
+	if (len_check < len)
+		len = len_check;
 	ptr = malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (NULL);
