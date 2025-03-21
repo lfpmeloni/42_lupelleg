@@ -6,7 +6,7 @@
 #    By: lupelleg <lupelleg@student.42heilbronn.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 12:37:07 by lupelleg          #+#    #+#              #
-#    Updated: 2025/03/19 19:09:11 by lupelleg         ###   ########.fr        #
+#    Updated: 2025/03/21 16:37:22 by lupelleg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,10 @@ bonus: $(OBJS) $(BOBJS)
 	ar rcs $(NAME) $(OBJS) $(BOBJS)
 
 clean:
-	rm -f $(OBJS) $(BOBJS) $(NAME)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
